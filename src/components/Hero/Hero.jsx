@@ -120,8 +120,8 @@ const Hero = () => {
             <div key={i} className="particle" style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: '30s'
+              animationDelay: `${i * 1.5}s`,
+              animationDuration: '90s'
             }} />
           ))}
         </div>
