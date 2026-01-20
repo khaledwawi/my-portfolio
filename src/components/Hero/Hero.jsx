@@ -8,7 +8,6 @@ const Hero = () => {
   // Typing animation
   const roles = [
     'Full Stack Developer',
-    'Machine Learning Engineer', 
     'Math Instructor',
     'Software Engineer',
     'Problem Solver'
