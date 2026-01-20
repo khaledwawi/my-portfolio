@@ -180,21 +180,19 @@ const Hero = () => {
             </a>
           </div>
         </motion.div>
-      </motion.div>
 
-      <motion.a 
-        href="#about"
-        className="scroll-indicator"
-        onClick={(e) => handleSmoothScroll(e, 'about')}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.5 }}
-      >
-        <span>Scroll to explore</span>
-        <div className="scroll-arrow">
-          <FiChevronDown />
-        </div>
-      </motion.a>
+        <motion.a 
+          href="#about"
+          className="scroll-indicator"
+          onClick={(e) => handleSmoothScroll(e, 'about')}
+          variants={itemVariants}
+        >
+          <span>Scroll to explore</span>
+          <div className="scroll-arrow">
+            <FiChevronDown />
+          </div>
+        </motion.a>
+      </motion.div>
     </section>
   );
 };
