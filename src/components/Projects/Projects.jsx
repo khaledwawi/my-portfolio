@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useMemo } from 'react';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
@@ -192,39 +192,46 @@ const Projects = () => {
                   Other Noteworthy Projects
                 </motion.h3>
 
-                <div className="other-projects-grid">
-                  {otherProjects.map((project, index) => (
-                    <motion.div
-                      key={project.title}
-                      className="other-project-card"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
-                      whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                    >
-                      <div className="card-icon-wrapper" style={{ background: project.gradient }}>
-                        {project.icon}
-                      </div>
-                      <h4 className="card-title">{project.title}</h4>
-                      <p className="card-description">{project.description}</p>
-                      <ul className="card-tech">
-                        {project.tech.map((tech) => (
-                          <li key={tech}>{tech}</li>
-                        ))}
-                      </ul>
-                      <div className="card-links">
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <FiGithub size={20} />
-                        </a>
-                        {project.live && (
-                          <a href={project.live} target="_blank" rel="noopener noreferrer">
-                            <FiExternalLink size={20} />
+                <LayoutGroup>
+                  <motion.div className="other-projects-grid" layout>
+                    {otherProjects.map((project, index) => (
+                      <motion.div
+                        key={project.title}
+                        className="other-project-card"
+                        layout
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ 
+                          duration: 0.4, 
+                          delay: 1 + index * 0.1,
+                          layout: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+                        }}
+                        whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                      >
+                        <div className="card-icon-wrapper" style={{ background: project.gradient }}>
+                          {project.icon}
+                        </div>
+                        <h4 className="card-title">{project.title}</h4>
+                        <p className="card-description">{project.description}</p>
+                        <ul className="card-tech">
+                          {project.tech.map((tech) => (
+                            <li key={tech}>{tech}</li>
+                          ))}
+                        </ul>
+                        <div className="card-links">
+                          <a href={project.github} target="_blank" rel="noopener noreferrer">
+                            <FiGithub size={20} />
                           </a>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+                          {project.live && (
+                            <a href={project.live} target="_blank" rel="noopener noreferrer">
+                              <FiExternalLink size={20} />
+                            </a>
+                          )}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </LayoutGroup>
               </>
             )}
 

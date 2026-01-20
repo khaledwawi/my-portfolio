@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, LayoutGroup } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { 
@@ -58,21 +58,27 @@ const Skills = () => {
           <p className="section-subtitle">Technologies I work with</p>
         </motion.div>
 
-        <div className="skills-grid">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              className="skill-card"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              whileHover={{ 
-                scale: 1.05, 
-                boxShadow: `0 20px 40px ${skill.color}30`,
-                transition: { duration: 0.2 } 
-              }}
-            >
-              <div 
+        <LayoutGroup>
+          <motion.div className="skills-grid" layout>
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                className="skill-card"
+                layout
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.05,
+                  layout: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+                }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  boxShadow: `0 20px 40px ${skill.color}30`,
+                  transition: { duration: 0.2 } 
+                }}
+              >
+                <div 
                 className="skill-icon" 
                 style={{ 
                   color: skill.color,
@@ -92,9 +98,10 @@ const Skills = () => {
                 />
               </div>
               <span className="skill-level">{skill.level}%</span>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </LayoutGroup>
       </div>
     </section>
   );
