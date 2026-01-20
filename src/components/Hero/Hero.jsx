@@ -116,12 +116,12 @@ const Hero = () => {
         <div className="hero-gradient-2"></div>
         <div className="hero-gradient-3"></div>
         <div className="hero-particles">
-          {[...Array(50)].map((_, i) => (
+          {[...Array(60)].map((_, i) => (
             <div key={i} className="particle" style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
+              animationDelay: `${Math.random() * 20}s`,
+              animationDuration: `${15 + Math.random() * 20}s`
             }} />
           ))}
         </div>
