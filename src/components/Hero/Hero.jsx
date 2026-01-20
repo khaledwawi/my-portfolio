@@ -186,9 +186,9 @@ const Hero = () => {
         
         <motion.div className="hero-buttons" variants={itemVariants}>
           <a 
-            href="#projects" 
+            href="#about" 
             className="btn btn-primary btn-glow"
-            onClick={(e) => handleSmoothScroll(e, 'projects')}
+            onClick={(e) => handleSmoothScroll(e, 'about')}
           >
             <span>View My Work</span>
             <div className="btn-shine"></div>
