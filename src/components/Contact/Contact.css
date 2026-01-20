@@ -220,8 +220,70 @@
 }
 
 @media (max-width: 968px) {
+  .contact {
+    padding: 4rem 0;
+  }
+  
+  .contact-header {
+    margin-bottom: 2.5rem;
+  }
+  
   .contact-content {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
+  }
+  
+  .contact-info {
+    text-align: center;
+  }
+  
+  .contact-info h3 {
+    font-size: 1.5rem;
+  }
+  
+  .info-items {
+    align-items: center;
+  }
+  
+  .info-item {
+    justify-content: center;
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact {
+    padding: 3rem 0;
+  }
+  
+  .contact-form {
+    padding: 1.5rem;
+  }
+  
+  .form-group label {
+    font-size: 0.85rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+  
+  .info-icon {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .info-value {
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn {
+    padding: 1rem;
+    font-size: 0.95rem;
   }
 }

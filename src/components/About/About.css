@@ -198,7 +198,7 @@
 @media (max-width: 968px) {
   .about-content {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   .about-image-section {
@@ -206,27 +206,80 @@
   }
 
   .about-image-wrapper {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
   }
 
   .initials {
-    font-size: 4rem;
+    font-size: 3.5rem;
+  }
+  
+  .about-text h3 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .about-text p {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  
+  .about-contact-info {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
 @media (max-width: 576px) {
+  .about {
+    padding: 4rem 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .about-image-wrapper {
+    width: 160px;
+    height: 160px;
+  }
+  
   .about-highlights {
     gap: 0.75rem;
   }
 
   .highlight-card {
-    padding: 1rem;
+    padding: 0.875rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
   }
 
   .highlight-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 1.25rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+  
+  .highlight-text strong {
+    font-size: 0.85rem;
+  }
+  
+  .highlight-text span {
+    font-size: 0.8rem;
+  }
+  
+  .about-contact-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-item {
+    font-size: 0.85rem;
   }
 }

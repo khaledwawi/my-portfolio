@@ -95,6 +95,10 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
+  
   .footer-content {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -104,12 +108,44 @@
   .footer-brand {
     max-width: 100%;
   }
+  
+  .footer-brand p {
+    font-size: 0.9rem;
+  }
 
   .footer-links nav {
     align-items: center;
   }
+  
+  .footer-links nav a {
+    font-size: 0.9rem;
+  }
 
   .footer-social .social-icons {
     justify-content: center;
+  }
+  
+  .footer-bottom {
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .footer-bottom p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2.5rem 0 1rem;
+  }
+  
+  .footer-logo {
+    font-size: 1.5rem;
+  }
+  
+  .footer-social h4,
+  .footer-links h4 {
+    font-size: 1rem;
   }
 }

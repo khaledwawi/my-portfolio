@@ -11,7 +11,7 @@ const About = () => {
 
   const highlights = [
     { icon: <FaGraduationCap />, title: 'B.Sc Software Engineering', subtitle: 'Kinneret Academic College' },
-    { icon: <FaChalkboardTeacher />, title: '2+ Years Teaching', subtitle: 'Math & Computer Science' },
+    { icon: <FaChalkboardTeacher />, title: '4+ Years Teaching', subtitle: 'Math & Computer Science' },
     { icon: <FaLanguage />, title: '3 Languages', subtitle: 'English, Hebrew, Arabic' },
   ];
 
