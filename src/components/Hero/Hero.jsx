@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiDownload, FiChevronDown } from 'react-icons/fi';
 import { FaCode, FaLaptopCode, FaServer } from 'react-icons/fa';
@@ -108,6 +108,15 @@ const Hero = () => {
     { icon: <FaServer />, delay: 1, x: '75%', y: '75%' },
   ];
 
+  // Generate particle positions ONCE - prevents jumping on re-render
+  const particles = useMemo(() => {
+    return [...Array(60)].map((_, i) => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      delay: `${i * 0.5}s`
+    }));
+  }, []);
+
   return (
     <section id="home" className="hero">
       {/* Animated Background */}
@@ -116,12 +125,11 @@ const Hero = () => {
         <div className="hero-gradient-2"></div>
         <div className="hero-gradient-3"></div>
         <div className="hero-particles">
-          {[...Array(60)].map((_, i) => (
+          {particles.map((particle, i) => (
             <div key={i} className="particle" style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 1.5}s`,
-              animationDuration: '90s'
+              left: particle.left,
+              top: particle.top,
+              animationDelay: particle.delay
             }} />
           ))}
         </div>
