@@ -34,7 +34,7 @@
     
     <!-- Preloader Styles -->
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap');
       
       .preloader {
         position: fixed;
@@ -42,12 +42,14 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: #0f0f1a;
+        background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0f0f1a 100%);
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         z-index: 9999;
-        transition: opacity 0.6s ease, visibility 0.6s ease;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+        overflow: hidden;
       }
       
       .preloader.hidden {
@@ -55,207 +57,234 @@
         visibility: hidden;
       }
       
+      /* Animated gradient background */
+      .preloader-bg {
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+          radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.1) 0%, transparent 40%),
+          radial-gradient(circle at 50% 50%, rgba(244, 114, 182, 0.08) 0%, transparent 50%);
+        animation: bg-pulse 4s ease-in-out infinite;
+      }
+      
+      @keyframes bg-pulse {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      
       .preloader-content {
         text-align: center;
         position: relative;
+        z-index: 2;
       }
       
-      /* Animated circles */
-      .preloader-rings {
-        position: relative;
-        width: 150px;
-        height: 150px;
-        margin: 0 auto 2rem;
+      /* Handwritten greeting */
+      .preloader-greeting {
+        font-family: 'Caveat', cursive;
+        font-size: 1.8rem;
+        color: #94a3b8;
+        margin-bottom: 1rem;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+        animation-delay: 0.2s;
       }
       
-      .preloader-rings .ring {
-        position: absolute;
-        border-radius: 50%;
-        border: 3px solid transparent;
-        animation: rotate 1.5s linear infinite;
-      }
-      
-      .preloader-rings .ring:nth-child(1) {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        border-top-color: #6366f1;
-        animation-duration: 1.5s;
-      }
-      
-      .preloader-rings .ring:nth-child(2) {
-        width: 75%;
-        height: 75%;
-        top: 12.5%;
-        left: 12.5%;
-        border-top-color: #22d3ee;
-        animation-duration: 1.2s;
-        animation-direction: reverse;
-      }
-      
-      .preloader-rings .ring:nth-child(3) {
-        width: 50%;
-        height: 50%;
-        top: 25%;
-        left: 25%;
-        border-top-color: #f472b6;
-        animation-duration: 0.9s;
-      }
-      
-      @keyframes rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      /* Logo in center */
-      .preloader-logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      /* Main name with reveal effect */
+      .preloader-name {
         font-family: 'Inter', sans-serif;
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 8vw, 3.5rem);
         font-weight: 800;
-        background: linear-gradient(135deg, #6366f1 0%, #22d3ee 50%, #f472b6 100%);
-        background-size: 200% 200%;
+        margin-bottom: 0.5rem;
+        overflow: hidden;
+      }
+      
+      .preloader-name span {
+        display: inline-block;
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 25%, #22d3ee 50%, #f472b6 75%, #6366f1 100%);
+        background-size: 300% 300%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: gradient-shift 2s ease infinite;
+        animation: gradient-flow 3s ease infinite, letterReveal 0.6s ease forwards;
+        opacity: 0;
+        transform: translateY(40px);
       }
       
-      @keyframes gradient-shift {
-        0%, 100% { background-position: 0% 50%; }
+      .preloader-name span:nth-child(1) { animation-delay: 0.4s, 0.4s; }
+      .preloader-name span:nth-child(2) { animation-delay: 0.45s, 0.45s; }
+      .preloader-name span:nth-child(3) { animation-delay: 0.5s, 0.5s; }
+      .preloader-name span:nth-child(4) { animation-delay: 0.55s, 0.55s; }
+      .preloader-name span:nth-child(5) { animation-delay: 0.6s, 0.6s; }
+      .preloader-name span:nth-child(6) { animation-delay: 0.65s, 0.65s; }
+      
+      @keyframes letterReveal {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes gradient-flow {
+        0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
       }
       
-      /* Loading text */
-      .preloader-text {
+      /* Role text with typewriter */
+      .preloader-role {
         font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        color: #94a3b8;
-        letter-spacing: 3px;
-        text-transform: uppercase;
+        font-size: 1.1rem;
+        color: #64748b;
+        margin-bottom: 2.5rem;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+        animation-delay: 1s;
+      }
+      
+      .preloader-role .highlight {
+        color: #22d3ee;
+        font-weight: 600;
+      }
+      
+      /* Creative loading indicator */
+      .preloader-loader {
         display: flex;
+        align-items: center;
         justify-content: center;
-        gap: 4px;
+        gap: 0.5rem;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+        animation-delay: 1.3s;
       }
       
-      .preloader-text span {
-        animation: wave 1.5s ease-in-out infinite;
+      .loader-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #6366f1;
+        animation: dotPulse 1.4s ease-in-out infinite;
       }
       
-      .preloader-text span:nth-child(1) { animation-delay: 0s; }
-      .preloader-text span:nth-child(2) { animation-delay: 0.1s; }
-      .preloader-text span:nth-child(3) { animation-delay: 0.2s; }
-      .preloader-text span:nth-child(4) { animation-delay: 0.3s; }
-      .preloader-text span:nth-child(5) { animation-delay: 0.4s; }
-      .preloader-text span:nth-child(6) { animation-delay: 0.5s; }
-      .preloader-text span:nth-child(7) { animation-delay: 0.6s; }
+      .loader-dot:nth-child(1) { animation-delay: 0s; background: #6366f1; }
+      .loader-dot:nth-child(2) { animation-delay: 0.2s; background: #8b5cf6; }
+      .loader-dot:nth-child(3) { animation-delay: 0.4s; background: #22d3ee; }
       
-      @keyframes wave {
-        0%, 100% { 
-          transform: translateY(0);
+      @keyframes dotPulse {
+        0%, 80%, 100% { 
+          transform: scale(0.6);
           opacity: 0.5;
         }
-        50% { 
-          transform: translateY(-8px);
+        40% { 
+          transform: scale(1.2);
           opacity: 1;
         }
       }
       
-      /* Progress bar */
-      .preloader-progress {
-        width: 200px;
+      /* Message that feels personal */
+      .preloader-message {
+        font-family: 'Caveat', cursive;
+        font-size: 1.4rem;
+        color: #64748b;
+        margin-top: 2rem;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+        animation-delay: 1.6s;
+      }
+      
+      .preloader-message .emoji {
+        display: inline-block;
+        animation: wave-hand 1s ease-in-out infinite;
+        transform-origin: 70% 70%;
+      }
+      
+      @keyframes wave-hand {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(20deg); }
+        75% { transform: rotate(-10deg); }
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Floating elements */
+      .preloader-float {
+        position: absolute;
+        font-size: 2rem;
+        opacity: 0.1;
+        animation: floatAround 8s ease-in-out infinite;
+      }
+      
+      .preloader-float:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+      .preloader-float:nth-child(2) { top: 25%; right: 15%; animation-delay: 1s; }
+      .preloader-float:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; }
+      .preloader-float:nth-child(4) { bottom: 30%; right: 10%; animation-delay: 3s; }
+      .preloader-float:nth-child(5) { top: 60%; left: 5%; animation-delay: 4s; }
+      
+      @keyframes floatAround {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(10px, -15px) rotate(5deg); }
+        50% { transform: translate(-5px, 10px) rotate(-5deg); }
+        75% { transform: translate(15px, 5px) rotate(3deg); }
+      }
+      
+      /* Line decoration */
+      .preloader-line {
+        width: 60px;
         height: 3px;
-        background: rgba(99, 102, 241, 0.2);
-        border-radius: 10px;
-        margin: 1.5rem auto 0;
-        overflow: hidden;
+        background: linear-gradient(90deg, transparent, #6366f1, #22d3ee, transparent);
+        margin: 0 auto 1.5rem;
+        border-radius: 2px;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards, lineGlow 2s ease-in-out infinite;
+        animation-delay: 0.8s, 0.8s;
       }
       
-      .preloader-progress-bar {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #6366f1, #22d3ee, #f472b6);
-        border-radius: 10px;
-        animation: progress 1.5s ease-in-out infinite;
-      }
-      
-      @keyframes progress {
-        0% { width: 0%; margin-left: 0%; }
-        50% { width: 60%; margin-left: 20%; }
-        100% { width: 0%; margin-left: 100%; }
-      }
-      
-      /* Floating particles */
-      .preloader-particles {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        pointer-events: none;
-      }
-      
-      .preloader-particle {
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        background: #6366f1;
-        border-radius: 50%;
-        opacity: 0.3;
-        animation: float-particle 4s ease-in-out infinite;
-      }
-      
-      .preloader-particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; background: #6366f1; }
-      .preloader-particle:nth-child(2) { left: 20%; top: 80%; animation-delay: 0.5s; background: #22d3ee; }
-      .preloader-particle:nth-child(3) { left: 80%; top: 30%; animation-delay: 1s; background: #f472b6; }
-      .preloader-particle:nth-child(4) { left: 70%; top: 70%; animation-delay: 1.5s; background: #6366f1; }
-      .preloader-particle:nth-child(5) { left: 50%; top: 10%; animation-delay: 2s; background: #22d3ee; }
-      .preloader-particle:nth-child(6) { left: 30%; top: 60%; animation-delay: 2.5s; background: #f472b6; }
-      
-      @keyframes float-particle {
-        0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
-        50% { transform: translateY(-30px) scale(1.5); opacity: 0.6; }
+      @keyframes lineGlow {
+        0%, 100% { opacity: 0.5; width: 60px; }
+        50% { opacity: 1; width: 80px; }
       }
     </style>
   </head>
   <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
-      <div class="preloader-particles">
-        <div class="preloader-particle"></div>
-        <div class="preloader-particle"></div>
-        <div class="preloader-particle"></div>
-        <div class="preloader-particle"></div>
-        <div class="preloader-particle"></div>
-        <div class="preloader-particle"></div>
-      </div>
+      <div class="preloader-bg"></div>
+      
+      <!-- Floating code symbols -->
+      <div class="preloader-float">{ }</div>
+      <div class="preloader-float">&lt;/&gt;</div>
+      <div class="preloader-float">( )</div>
+      <div class="preloader-float">[ ]</div>
+      <div class="preloader-float"># </div>
       
       <div class="preloader-content">
-        <div class="preloader-rings">
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="preloader-logo">K</div>
+        <p class="preloader-greeting">Hello, welcome to my world</p>
+        
+        <h1 class="preloader-name">
+          <span>K</span><span>H</span><span>A</span><span>L</span><span>E</span><span>D</span>
+        </h1>
+        
+        <div class="preloader-line"></div>
+        
+        <p class="preloader-role">
+          Crafting <span class="highlight">digital experiences</span> with passion
+        </p>
+        
+        <div class="preloader-loader">
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
         </div>
         
-        <div class="preloader-text">
-          <span>L</span>
-          <span>O</span>
-          <span>A</span>
-          <span>D</span>
-          <span>I</span>
-          <span>N</span>
-          <span>G</span>
-        </div>
-        
-        <div class="preloader-progress">
-          <div class="preloader-progress-bar"></div>
-        </div>
+        <p class="preloader-message">
+          Getting things ready for you <span class="emoji">✨</span>
+        </p>
       </div>
     </div>
     
