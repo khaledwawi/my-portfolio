@@ -1,11 +1,13 @@
 .hero {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
   padding-top: 80px;
+  padding-bottom: 2rem;
 }
 
 .hero-bg {
@@ -314,7 +316,7 @@
 
 .scroll-indicator {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -327,6 +329,7 @@
   letter-spacing: 2px;
   text-decoration: none;
   transition: color 0.3s ease;
+  z-index: 10;
 }
 
 .scroll-indicator:hover {
