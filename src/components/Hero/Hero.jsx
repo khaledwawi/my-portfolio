@@ -1,9 +1,49 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiDownload, FiChevronDown } from 'react-icons/fi';
 import { FaCode, FaLaptopCode, FaServer } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
+  // Typing animation
+  const roles = [
+    'Full Stack Developer',
+    'Machine Learning Engineer', 
+    'Math Instructor',
+    'Software Engineer',
+    'Problem Solver'
+  ];
+  
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  useEffect(() => {
+    const currentRole = roles[currentRoleIndex];
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (currentText.length < currentRole.length) {
+          setCurrentText(currentRole.slice(0, currentText.length + 1));
+        } else {
+          // Pause at end, then start deleting
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting
+        if (currentText.length > 0) {
+          setCurrentText(currentText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, isDeleting ? 50 : 100);
+    
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentRoleIndex]);
+
   // Custom smooth scroll function with easing
   const smoothScrollTo = (targetPosition, duration) => {
     const startPosition = window.pageYOffset;
@@ -133,9 +173,9 @@ const Hero = () => {
         
         <motion.div className="hero-title" variants={itemVariants}>
           <span className="title-wrapper">
-            <span className="title-bracket">&lt;</span>
-            <span className="title-animated">Software Engineer</span>
-            <span className="title-bracket">/&gt;</span>
+            <span className="title-static">I'm a </span>
+            <span className="title-animated">{currentText}</span>
+            <span className="typing-cursor">|</span>
           </span>
         </motion.div>
         
