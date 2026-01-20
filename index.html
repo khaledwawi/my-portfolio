@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Khaled Abu Ahmad | Software Engineer Portfolio</title>
+    <meta name="title" content="Khaled Abu Ahmad | Software Engineer Portfolio" />
+    <meta name="description" content="Khaled Abu Ahmad - Software Engineer specializing in full-stack development, React, Node.js, Python, and Machine Learning. View my projects and get in touch!" />
+    <meta name="author" content="Khaled Abu Ahmad" />
+    <meta name="keywords" content="Khaled Abu Ahmad, Software Engineer, Full Stack Developer, React, Node.js, Python, Portfolio, Web Developer, Israel" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://khaledabuahmad.com/" />
+    <meta property="og:title" content="Khaled Abu Ahmad | Software Engineer Portfolio" />
+    <meta property="og:description" content="Software Engineer specializing in full-stack development, React, Node.js, Python, and Machine Learning. View my projects and get in touch!" />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://khaledabuahmad.com/" />
+    <meta property="twitter:title" content="Khaled Abu Ahmad | Software Engineer Portfolio" />
+    <meta property="twitter:description" content="Software Engineer specializing in full-stack development, React, Node.js, Python, and Machine Learning." />
+    <meta property="twitter:image" content="/og-image.png" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#6366f1" />
+    
+    <!-- Preloader Styles -->
+    <style>
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0f0f1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      .preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .preloader-content {
+        text-align: center;
+      }
+      .preloader-logo {
+        font-size: 4rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      .preloader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(99, 102, 241, 0.2);
+        border-top-color: #6366f1;
+        border-radius: 50%;
+        margin: 1.5rem auto 0;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+      <div class="preloader-content">
+        <div class="preloader-logo">K.</div>
+        <div class="preloader-spinner"></div>
+      </div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

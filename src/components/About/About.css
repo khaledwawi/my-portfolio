@@ -1,0 +1,232 @@
+.about {
+  background: var(--bg-secondary);
+  padding: 8rem 0;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-image-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-image-wrapper {
+  position: relative;
+  width: 280px;
+  height: 280px;
+}
+
+.about-image-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.3s ease;
+}
+
+.about-image-container:hover .about-image {
+  transform: scale(1.05);
+}
+
+.about-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-1);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
+}
+
+.initials {
+  font-size: 5rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about-image-border {
+  position: absolute;
+  inset: -15px;
+  border: 3px solid var(--primary);
+  border-radius: 35px;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.about-image-dots {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 120px;
+  height: 120px;
+  background-image: radial-gradient(var(--primary) 2px, transparent 2px);
+  background-size: 15px 15px;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.about-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
+.contact-item svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.about-text h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.about-text p {
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+.about-text strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.highlight-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.highlight-card:hover {
+  border-color: var(--primary);
+  transform: translateX(10px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+}
+
+.highlight-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--gradient-1);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.highlight-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.highlight-text strong {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.highlight-text span {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 968px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-image-section {
+    order: -1;
+  }
+
+  .about-image-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .initials {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-highlights {
+    gap: 0.75rem;
+  }
+
+  .highlight-card {
+    padding: 1rem;
+  }
+
+  .highlight-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+}
